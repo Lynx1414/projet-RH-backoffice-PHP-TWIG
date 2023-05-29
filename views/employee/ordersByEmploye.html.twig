@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{%  block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Historique de vos achats</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" class="produit-size">N° de commande</th>
+						<th scope="col" class="produit-size">Produit</th>
+						<th scope="col" class="produit-size">Date d'achat</th>
+						<th scope="col" class="produit-size">Montant utilisé</th>
+            <th scope="col" class="produit-size">Solde restant</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for order in ordersByEmploye %}
+						<tr>
+							<td class="produit-size">{{order.Num_of_order}}</td>
+              <td class="produit-size">{{order.Designation}}</td>
+							<td class="produit-size">{{order.Date_of_order}}</td>
+              <td class="produit-size" id="title-center">{{order.Prix}} €</td>
+              <td class="produit-size" id="title-center">???</td>
+             
+							<td class="button_gap_left">
+								 <a href="/orders/details?id={{order.Num_of_order}}"> {#lien + get id (?id=) #}
+									<button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-eye"></i></i></button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

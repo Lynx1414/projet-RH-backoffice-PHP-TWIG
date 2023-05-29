@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre}}
+{% endblock %}
+{# cf ProductController ligne 24 #}
+
+
+{%  block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Produits</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" class="produit-size">ID</th>
+						<th scope="col" class="produit-size" id="title-center">Designation</th>
+						<th scope="col" class="produit-size">Prix</th>
+						<th scope="col" class="produit-size">Stock</th>
+						<th scope="col" class="produit-size" id="actions-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for produit in produits %}
+
+						<tr {% if produit.Stock < 10 and produit.Statut == 1 %}class="table table-danger"{% endif %}>
+							<td class="produit-size">{{produit.ID}} </td>
+							<td class="produit-size">{{produit.Designation}}</td>
+							<td class="produit-size">{{produit.Prix}}</td>
+							<td class="produit-size">{{produit.Stock}}</td>
+
+							<td
+								class="button_gap">
+								{#lien + get id (?id=) #}
+								{% if produit.Statut == 1 %}
+									<a href="products/addTen?id={{produit.ID}}">
+										<button type="button" class="btn btn-outline-secondary">
+											<i class="fa-solid fa-rotate-right"></i>
+										</button>
+									</a>
+								{% else %}
+									<button type="button" class=" btn btn-danger" disabled>
+										<i class="fa-solid fa-rotate-right"></i>
+									</button>
+								{% endif %}
+							</td>
+							<td class="button_gap">
+								<a href="products/update?id={{produit.ID}}">
+									<button type="button" class="btn btn-outline-secondary">
+										<i class="fa-solid fa-pen"></i>
+									</button>
+								</a>
+							</td>
+							<td class="button_gap">
+								<a href="products/update?id={{produit.ID}}">
+									<button type="button" class="btn btn-outline-secondary">
+										<i class="fa-solid fa-xmark" style="color: #ad1010;"></i>
+									</button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				<tr>
+					<td class="button_gap">
+						<a href="/products/insertProduct">
+							<button type="button" class="btn btn-info btn-lg btn-block">
+							<i class="fa-solid fa-plus"></i>
+							</button>
+						</a>
+				</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre}}
+{% endblock %}
+{%  block content %}
+	<main id="update">
+
+		<form method="POST" action="/products/insertProduct" class="container" id="container-connexion">
+
+			<div class="mb-3 row">
+				<label for="idProduct" class="col-sm-2 col-form-label">ID</label>
+				<div class="col-sm-6">
+					<input name="id" type="text" readonly class="form-control-plaintext" id="idProduct" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="designation" class="col-sm-2 col-form-label">Designation :</label>
+				<div class="col-sm-6">
+					<input name="designation" type="text" class="form-control" id="designation" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="prix" class="col-sm-2 col-form-label">Prix :</label>
+				<div class="col-sm-6">
+					<input name="prix" type="integer" class="form-control" id="prix" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="stock" class="col-sm-2 col-form-label">Stock :</label>
+				<div class="col-sm-6">
+					<input name="stock" type="text" class="form-control" id="stock" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="statut" class="col-sm-2 col-form-label">Statut :</label>
+				<div class="col-sm-6">
+					<input name="statut" type="text" class="form-control" id="statut" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="imgSrc" class="col-sm-2 col-form-label">imgSrc :</label>
+				<div class="col-sm-6">
+					<input name="imgSrc" type="text" class="form-control" id="imgSrc" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="imgAlt" class="col-sm-2 col-form-label">imgAlt :</label>
+				<div class="col-sm-6">
+					<input name="imgAlt" type="text" class="form-control" id="imgAlt" value="">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="categorie" class="col-sm-2 col-form-label">Categorie :</label>
+				<div class="col-sm-6">
+
+					{# <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+						<option selected>Choose...</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select> #}
+
+					<input name="categorie" type="select" class="form-control" id="categorie" value="">
+				</div>
+			</div>
+
+			<div id="connexion_btn">
+				<button name="update_btn" type="submit" class="btn btn-secondary mb-3">Insert</button>
+			</div>
+		</div>
+
+	</main>
+{% endblock %}

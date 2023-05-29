@@ -1,0 +1,56 @@
+[
+  {
+    "ID": 1,
+    "Designation": "croissant",
+    "Prix": "3.50",
+    "Stock": 50,
+    "Statut": 1,
+    "imgSrc": "public\\img\\croissant.webp",
+    "imgAlt": "croissant"
+  },
+  {
+    "ID": 2,
+    "Designation": "chocolatine",
+    "Prix": "3.70",
+    "Stock": 30,
+    "Statut": 1,
+    "imgSrc": "public\\img\\pain-chocolat.webp",
+    "imgAlt": "chocolatine"
+  },
+  {
+    "ID": 3,
+    "Designation": "pain au lait",
+    "Prix": "3.80",
+    "Stock": 19,
+    "Statut": 1,
+    "imgSrc": "public\\img\\pain-au-lait.webp",
+    "imgAlt": "pain au lait"
+  },
+  {
+    "ID": 4,
+    "Designation": "gaufre",
+    "Prix": "3.80",
+    "Stock": 5,
+    "Statut": 0,
+    "imgSrc": "public\\img\\gaufre.webp",
+    "imgAlt": "gaufre"
+  },
+  {
+    "ID": 5,
+    "Designation": "brioche",
+    "Prix": "3.50",
+    "Stock": 15,
+    "Statut": 1,
+    "imgSrc": "public\\img\\brioche.webp",
+    "imgAlt": "brioche"
+  },
+  {
+    "ID": 6,
+    "Designation": "donut",
+    "Prix": "4.00",
+    "Stock": 10,
+    "Statut": 1,
+    "imgSrc": "public\\img\\donut.webp",
+    "imgAlt": "donut"
+  }
+]

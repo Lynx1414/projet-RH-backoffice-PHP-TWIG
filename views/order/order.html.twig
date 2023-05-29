@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{%  block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Commandes</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" class="produit-size">ID</th>
+						<th scope="col" class="produit-size">Date de commande</th>
+						<th scope="col" class="produit-size">id de l'employe</th>
+						<th scope="col" class="produit-size" id="actions-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for order in orders %}
+						<tr>
+							<td class="produit-size">{{order.ID}}</td>
+							<td class="produit-size">{{order.Date_of_order}}</td>
+							<td class="produit-size">{{order.Employees_ID}}
+							</td>
+
+							<td class="button" id="actions-center">
+								<a
+									href="orders/details?id={{order.ID}}&idEmploy={{order.Employees_ID}}">
+									<button type="button" class="btn btn-outline-secondary">
+										<i class="fa-solid fa-eye"></i>
+									</button>
+								</a>
+							</td>
+						{% endfor %}
+						{# {% endfor %} #}
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+PARTIE BACKOFFICE________________________
+Notre client met en place un projet dans son entreprise : une solution web permettant aux salariés d’acheter des snacks via une interface.
+
+Le projet est divisé en deux parties :
+
+ une partie “back office” qui permet aux gestionnaires (RH) de gérer le stock de snacks et le budget alloué à chaque employé·e ;
+
+ et une partie “application” qui permet à chaque employé·e de dépenser son budget alloué dans des snacks disponibles à l’achat.
+
+Dans ce projet de deux semaines, nous allons seulement coder le back-office.
+
+Scénario :
+
+Aimée est gestionnaire de OnlineSnackies, elle se connecte sur le back-office et voit la liste des produits et leur stock. Elle voit que le prix des croissants est fixé à 3€ et décide de le mettre à 1€ pour cette semaine. Elle voit que le stock de jus de fruit est bas (5 articles), elle décide donc d'en commander 10 de plus.
+Kévin vient de rejoindre la boîte, elle crée donc son compte et le crédite de 50€. Kévin n'étant pas gestionnaire (mince), elle fait en sorte qu'il n'ait pas accès au backoffice d'OnlineSnackies.
+
+Kévin se connecte à l'interface salarié d'OnlineSnackies, il voit qu'il a 50€ sur son compte et décide d'acheter un croissant à 1€. Il voit qu'il lui reste 49€, et a accès à son historique de commande pour suivre sa consommation de cwason 
+
+Camille — Hier à 09:41
+à faire : maquette et modélisation (simple) de la base de données (quelle table, quels champs?)
+
+PARTIE APPLICATION EMPLOYEES________________________
+
+https://www.notion.so/Projet-Backoffice-MVC-9e92d898241444adaf439b6c8e75972e
+Je vous donne le sujet du projet, simplement pour que vous puissiez le lire (en entier!!!) dans l'aprem en même temps que vous continuez vos maquettes. Demain je vous présenterai la structure du projet et on le lira ensemble, il y a bcp d'infos !
+Notez vos questions si vous en avez en le lisant, on y répondra demain
+(n'attaquez pas le code cet aprem ; finalisez bien la maquette ; à la limite, vous pouvez créer votre base de données dans phpmyadmin)
+Notion de Camille on Notion
+Projet Backoffice MVC
+Notre client met en place un projet dans son entreprise : une solution web permettant aux salariés d’acheter des snacks via une interface.
+
+App.php -> //ROUTEUR
+class App.php servira simplement de routeur. C’est à dire qu’en fonction des paramètres donnés dans l’URL, le code sera responsable d’appeler les bons contrôleurs pour déclencher les bonnes actions et charger les bonnes vues.
+
+BaseController.php ->//Controller
+Class abstrait réunissant tous les comportements communs à tous les controllers
+Un contrôleur est responsable de faire le lien entre les **modèles** (chargement des données) et les **vues** (affichage et interface utilisateur).
+
+Les modèles
+Les modèles sont responsables de l’accès aux données. C’est la partie de notre projet qui gère simplement la relation avec la base de données.
+C’est ici que l’on codera la connexion à la base puis nos différentes requêtes SQL.
+
+Préprocesseur
+En informatique, un préprocesseur est un programme qui procède à des transformations sur un code source, avant l'étape de traduction proprement dite (compilation ou interprétation).
+Source: Wikipédia
+
+Compilation
+La compilation est un processus consistant à transformer un programme informatique, écrit dans un langage donné, en un programme dans un autre langage (généralement en assembleur qui pourra être exécuté par l'ordinateur).
+Source: Mozilla
+
+
+// ! JSON________________________________
+header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: *");
+
+La fonction header permet d'envoyer un en-tête HTTP. On l'a déjà utilisé pour "Location", ici vous voyez :
+Content-type, qui dit que la page n'affiche pas une page web classique mais du JSON
+Access-Control-Allow-Origin spécifie qui a le droit d'envoyer des requêtes sur notre site
+
+Vous aurez aussi besoin de la fonction json_encode
+si vous voulez en savoir + sur les headers : https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Access-Control-Allow-Origin

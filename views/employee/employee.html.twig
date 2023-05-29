@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{%  block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Employes</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col" class="produit-size">ID</th>
+						<th scope="col" class="produit-size" id="title-center">Service</th>
+						<th scope="col" class="produit-size">Nom</th>
+						<th scope="col" class="produit-size">Prenom</th>
+            <th scope="col" class="produit-size">Solde</th>
+            <th scope="col" class="produit-size">E-mail</th>
+            <th scope="col" class="produit-size">Is_Admin</th>
+            <th scope="col" class="produit-size">Date de réappro</th>
+            
+						<th scope="col" class="produit-size" id="actions-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for employee in employes %}
+						<tr>
+							<td class="produit-size">{{employee.ID}}</td>
+							<td class="produit-size">{{employee.Service}}</td>
+							<td class="produit-size">{{employee.Nom}}</td>
+							<td class="produit-size">{{employee.Prenom}}</td>
+              <td class="produit-size">{{employee.Solde}}</td>
+              <td class="produit-size">{{employee.mail}}</td>
+              <td class="produit-size">{{employee.Is_Admin}}</td>
+              <td class="produit-size">{{employee.Date_reappro}}</td>
+             
+							<td class="button_gap_left">
+								 <a href="employees/orders?id={{employee.ID}}"> {#lien + get id (?id=) #}
+									<button type="button" class="btn btn-outline-secondary"><i class="fa-regular fa-file"></i></button>
+								</a>
+							</td>
+              <td class="button_gap_left">
+								 <a href="employees/update?id={{employee.ID}}">
+									<button type="button" class="btn btn-outline-secondary"><i class="fa-regular fa-pen-to-square"></i></button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

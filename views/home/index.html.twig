@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{titre}}{% endblock %}
+
+{% block content %}
+<form action="/home/auth" method="POST" id="connexion" >
+	<div class="container" id="container-connexion">
+		<div class="mb-3 row row_connexion">
+			<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+			<div class="col-sm-6">
+				<input name='mail' required pattern="^[A-Za-Z]+@{1}[A-Za-Z]+\.{1}[A-Za-Z]{2, }$" type="text" class="form-control" id="staticEmail" placeholder="email@example.com">
+			</div>
+		</div>
+		<div class="mb-3 row row_connexion">
+			<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+			<div class="col-sm-6">
+				<input name='password' type="password" class="form-control" id="inputPassword">
+			</div>
+		<div id="connexion_btn">
+			<button type="submit" name="login" class="btn btn-secondary mb-3">Connexion</button>
+			</div>
+		</div>
+	</div>
+  </form>
+{% endblock %}
+
+{# readonly class="form-control-plaintext" #}

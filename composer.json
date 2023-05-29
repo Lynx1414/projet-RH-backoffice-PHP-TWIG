@@ -1,0 +1,18 @@
+{
+    "name": "acs/projet-rh",
+    "autoload": {
+        "psr-4": {
+            "core\\": "core/",
+            "src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lynx1414",
+            "email": "calabrin.delphine@orange.fr"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.5"
+    }
+}

@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{%  block content %}
+
+	<div class="container">
+
+		<table class="table" border="1px">
+			<thead>
+				<tr>
+					<th colspan="4"><img id="logo" src="https://pf.vos-competences.com/images/png/onlineformapro.png" alt="logo"><span></span>
+						<h1>Snackies</h1>
+						<address>350 rue de l'Eygala<br>
+							38430 MOIRANS<br>
+							04.58.00.52.57<br>
+							SIRET 3843035058000</address>
+					</th>
+				</tr>
+
+				<tr class="table-secondary">
+				{# TODO #}
+					<th colspan="4" id="title-center">
+						<h3>Commande N° {{order[0].Num_of_order}}</h3>
+						En date du <span>{{order[0].Date_of_order}}</span>
+					</th>
+				{# TODO #}	
+				</tr>
+				<tr></tr>
+
+				<tr>
+					<th colspan="4">
+						<h5>
+							<b>{{order[0].Prenom}}
+							{{order[0].Nom}}</b>
+						</h5>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="col" class="produit-size" id="title-center">Produits</th>
+					<th scope="col" class="produit-size" id="title-center">Prix Unitaire en €</th>
+					<th scope="col" class="produit-size" id="title-center">Nombre d'articles</th>
+					{# <th scope="col" class="produit-size" id="actions-left">Actions</th> #}
+				</tr>
+
+				{% for product in order %}
+					<tr>
+						<td class="produit-size" id="title-center">{{product.Designation}}</td>
+						<td class="produit-size" id="title-center">{{product.Prix}}</td>
+						<td class="produit-size" id="title-center">{{product.Quantite}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr class="table-secondary">
+					<td colspan="3" class="produit-size">
+						<span style="font-size: 20px">
+							Montant TTC réglé :
+							<b>{{ totalAmountOfOrder.TotalPrice }}
+								€</b>
+						</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="orders/details?id={{order.ID}}">
+							<button type="button" class="btn btn-outline-secondary" style="font-size: 22px">
+								<i class="fa-solid fa-print"></i>
+							</button>
+						</a>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+{% endblock %}

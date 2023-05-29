@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{% block content %}
+<div class="container-center">
+	
+		<div >
+      <h1 class= "text-center">Bienvenue cher administrateur</h1>
+      <p class= "text-center"> Vous êtes connecté(e) en tant que <span style= "color: blue;">{{session.login['mail']}}<span></p>
+		</div>
+	
+</div>
+{% endblock %}

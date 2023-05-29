@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{titre}}
+{% endblock %}
+
+{%  block content %}
+
+	<main id="update">
+		<form method="POST" action="/employees/updateDatabase" class="container" id="container-connexion">
+			<div class="mb-3 row">
+				<label for="idProduct" class="col-sm-2 col-form-label">ID</label>
+				<div class="col-sm-6">
+					<input name="id" type="text" readonly class="form-control-plaintext" id="idProduct" value="{{employes.ID}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="service" class="col-sm-2 col-form-label">Service :</label>
+				<div class="col-sm-6">
+					<input name="service" type="text" class="form-control" id="service" value="{{employes.Service}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="nom" class="col-sm-2 col-form-label">Nom :</label>
+				<div class="col-sm-6">
+					<input name="nom" type="integer" required pattern="^[A-Za-Z '-]+$" maxlength="30" class="form-control" id="nom" value="{{employes.Nom}}">
+				</div>
+
+			</div>
+
+			<div class="mb-3 row">
+				<label for="prenom" class="col-sm-2 col-form-label">Prénom :</label>
+				<div class="col-sm-6">
+					<input name="prenom" type="text" class="form-control" id="prenom" value="{{employes.Prenom}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="mail" class="col-sm-2 col-form-label">E-mail :</label>
+				<div class="col-sm-6">
+					<input name="mail" required pattern="^[A-Za-Z]+@{1}[A-Za-Z]+\.{1}[A-Za-Z]{2, }$" type="text" class="form-control" id="mail" value="{{employes.mail}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="solde" class="col-sm-2 col-form-label">Solde :</label>
+				<div class="col-sm-6">
+					<input name="solde" type="text" class="form-control" id="solde" value="{{employes.Solde}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="is_admin" class="col-sm-2 col-form-label">Is_Admin :</label>
+				<div class="col-sm-6">
+					<input name="is_admin" type="text" class="form-control" id="is_admin" value="{{employes.Is_Admin}}">
+				</div>
+			</div>
+
+			<div class="mb-3 row">
+				<label for="date_reappro" class="col-sm-2 col-form-label">Date de réappro. :</label>
+				<div class="col-sm-6">
+					<input name="date_reappro" type="text" class="form-control" id="date_reappro" value="{{employes.Date_reappro}}">
+				</div>
+			</div>
+
+			<div id="connexion_btn">
+				<button name="update_btn" id="btn-update" type="submit" class="btn btn-secondary mb-3">Update</button>
+			</div>
+		</form>
+	</main>
+  <div class="text-danger text-center text-uppercase" id="message" >
+			{% if msg %}
+				{{msg}}
+			{% endif %}
+		</div>
+{% endblock %}
