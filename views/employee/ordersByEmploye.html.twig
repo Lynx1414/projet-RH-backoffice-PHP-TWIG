@@ -17,8 +17,9 @@
 						<th scope="col" class="produit-size">N° de commande</th>
 						<th scope="col" class="produit-size">Produit</th>
 						<th scope="col" class="produit-size">Date d'achat</th>
-						<th scope="col" class="produit-size">Montant utilisé</th>
-            <th scope="col" class="produit-size">Solde restant</th>
+						<th scope="col" class="produit-size" id="title-center">Montant utilisé</th>
+						{# colonne solde restant mis en comments pour reprise projet avec insertio colonne Solde_restant ou NewSolde dans table employees #}
+            {# <th scope="col" class="produit-size">Solde restant</th> #}
 					</tr>
 				</thead>
 				<tbody>
@@ -27,8 +28,9 @@
 							<td class="produit-size">{{order.Num_of_order}}</td>
               <td class="produit-size">{{order.Designation}}</td>
 							<td class="produit-size">{{order.Date_of_order}}</td>
-              <td class="produit-size" id="title-center">{{order.Prix}} €</td>
-              <td class="produit-size" id="title-center">???</td>
+              <td class="produit-size" id="title-center">{{order.Amount}} €</td>
+							{# solde restant mis en comments pour reprise projet avec insertio colonne Solde_restant ou NewSolde dans table employees #}
+              {# <td class="produit-size" id="title-center">{{(order.Solde - order.Amount)|number_format(2, '.', ',')}} €</td>  #}
              
 							<td class="button_gap_left">
 								 <a href="/orders/details?id={{order.Num_of_order}}"> {#lien + get id (?id=) #}

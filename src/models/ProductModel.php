@@ -28,7 +28,7 @@ class ProductModel extends BaseModel
   public function getId()
   {
     return $this->id;
-}
+  }
 
   //! ajoute de nouveaux produit dans la base de données
   public function add_product($data)
@@ -45,16 +45,6 @@ class ProductModel extends BaseModel
     $query->execute();
   }
 
-  //! recupère les produits par catégorie
-  public function getAllByCategory($category)
-  {
-    $sql = 'SELECT * FROM ' . $this->table . ' WHERE Categorie= :Categorie';
-    $query = $this->_connexion->prepare($sql);
-    $query->bindParam(':Categorie', $category);
-    $query->execute();
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-  }
-
   public function changeStock($id, $qty)
   {
     $condition = '';
@@ -65,7 +55,6 @@ class ProductModel extends BaseModel
     $query = $this->_connexion->prepare($sql);
     $query->bindParam(':id', $id);
     $query->execute();
-    //return $query->fetchOne();
   }
 
 
@@ -77,8 +66,49 @@ class ProductModel extends BaseModel
     $query->execute();
   }
 
-  
+  //! JSON ________________________________________________________________
+  //! recupère les produits par catégorie
+  public function getAllByCategory($category)
+  {
+    $sql = 'SELECT * FROM ' . $this->table . ' WHERE Categorie= :Categorie';
+    $query = $this->_connexion->prepare($sql);
+    $query->bindParam(':Categorie', $category);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function updateProductRegardingOrder($productId, $qty)
+  {
+
+    $sql = 'UPDATE ' . $this->table . ' SET Stock = Stock - ' . $qty . ' WHERE id = :id AND Stock >= :qty';
+    $query = $this->_connexion->prepare($sql);
+    $query->bindParam(':id', $productId);
+    $query->bindParam(':qty', $qty);
+    $query->execute();
+  }
+
+  public function calculateSumCart($arrayId)
+  {
+    $in = rtrim(str_repeat('?,', count($arrayId)), ',');
+    $sql = "SELECT SUM(Prix) FROM products WHERE id in ($in)";
+
+    $query = $this->_connexion->prepare($sql);
+    //todo $query->execute(avec Parametre du tableau) == bindParam('id', $arrayId);
+    $query->execute($arrayId);
+    $sumCart = $query->fetch();
+    return floatval($sumCart[0]);
+  }
 }
+
+// JS
+// "dfgfdg" + oui
+// 'dfgdfg' + non 
+// `chaine ${dfd}`
+
+// PHP
+// "dfkdf $er"
+// 'dfdfg' .$ofo 
+
   // public function insertChangetoDb(){
   //   $sql = 'UPDATE ' . $this->table . 'SET ';
   //   // quelle(s) colonne(s) mettre à jour

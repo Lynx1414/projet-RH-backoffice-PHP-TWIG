@@ -24,7 +24,6 @@ class ProductController extends BaseController
     $title = 'Produits disponibles';
     $products = $this->productModel->getAll();
     // var_dump($products); die();
-    // echo "Ici nous aurons la liste des produits";
     $this->render('product/list.html.twig', array(
       'titre' => $title,
       'produits' => $products //penser au foreach pour boucler sur cet array à 2 dimensions
@@ -50,7 +49,6 @@ class ProductController extends BaseController
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $this->productModel->changeStock($id, 10);
-
       header('Location: /products');
     }
   }
@@ -58,24 +56,21 @@ class ProductController extends BaseController
   //! affiche les nouveaux produits 
   public function insertProduct()
   {
-    $title= 'Ajouter des nouveaux produits';
+    $title = 'Ajouter des nouveaux produits';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $this->productModel->add_product($_POST);
       header('Location: /products');
-    }
-    else{
+    } else {
       $this->render('product/insert.html.twig', array(
         'title' => $title
-
       ));
+    }
   }
-}
 
   //modification des values de designation et/ou de prix
   public function updateDatabaseProducts()
   {
     $id = $_POST['id'];
-
     $designation = $_POST['designation'];
     $prix = $_POST['prix'];
     $statut = $_POST['statut'];
@@ -108,24 +103,10 @@ class ProductController extends BaseController
 
   public function displayProductsByCategory()
   {
-   $category= $_GET['category']; 
-   $allByCategory= $this->productModel->getAllByCategory($category);
-   header('Content-Type: application/json');
-   header("Access-Control-Allow-Origin: *");
-   echo json_encode($allByCategory);
+    $category = $_GET['category'];
+    $allByCategory = $this->productModel->getAllByCategory($category);
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *');
+    echo json_encode($allByCategory);
   }
-  // public function consumeMany(){//apiConsumeMany
-
-  // } 
-
 }
-  // {
-  //   
-  //   ['designation' => 'croissant', 'prix' => 1];
-  //   $dataProduct= $_POST['designation']; 
-  //   $dataPrice= $_POST['prix'];
-  //   $dataStock= $_POST['stock'];
-
-  //   $this->productModel->add_product($_POST);
-  //   $product->
-  // }

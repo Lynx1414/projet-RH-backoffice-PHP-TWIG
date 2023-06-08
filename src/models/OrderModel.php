@@ -4,6 +4,7 @@ namespace src\models;
 
 use core\BaseModel;
 use PDO;
+use PDOException;
 
 //REQUETES SQL POUR PRODUITS
 
@@ -19,12 +20,12 @@ class OrderModel extends BaseModel
     JOIN product_order ON product_order.orders_ID = orders.ID 
     JOIN products ON product_order.products_ID = products.ID
     WHERE orders.ID = :id';
+     
     $query = $this->_connexion->prepare($sql);
     $query->bindParam(':id', $orderId);
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
-
 
   public function getTotalAmount($orderId)
   {
@@ -41,20 +42,32 @@ class OrderModel extends BaseModel
     $query->bindParam(':id', $orderId);
     $query->execute();
     $total_price = $query->fetch();
-    return $total_price;//TODO: $session['total_amount']= $total_price;
+    return $total_price; 
   }
 
-  // TODO 
-   /* public function calculNewSolde($id, $totalPrice){
-    if ($session['total_amount'] >= $solde){
-    $sql= 'UPDATE employees SET Solde = solde - 
-    (SELECT products.Price FROM products WHERE products.ID = 
-      WHERE ID = :idEmploy';
+  //! JSON ________________________________________________________________
 
-    $query= $this->_connexion->prepare($sql);
-    $query->bindParam(':total_price',$totalPrice);
-    $query->bindParam(':idEmploy',$id);
+  public function insertOrder($id, $sumCart)
+  {
+    $sql = 'INSERT INTO orders (Employees_ID, Amount ) VALUES (:id , :sumCart)';
+    $query = $this->_connexion->prepare($sql);
+    $query->bindParam(':id', $id);
+    $query->bindParam(':sumCart', $sumCart);
     $query->execute();
+    $lastOrderId = $this->_connexion->lastInsertId();
+    return $lastOrderId;
   }
-  }*/
+
+  public function insertProductOrder($lastOrderId, $arrayId)
+  {
+    foreach ($arrayId as $productId) {
+      $sql = 'INSERT INTO product_order (orders_ID, products_ID) VALUES (:order_id, :product_id)';
+      $query = $this->_connexion->prepare($sql);
+      $query->bindParam(':order_id', $lastOrderId);
+      $query->bindParam(':product_id', $productId);
+      // return $this->debugDumpParam();
+      $query->execute();
+    }
+  }
+
 }

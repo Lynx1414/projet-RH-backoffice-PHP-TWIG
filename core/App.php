@@ -16,10 +16,10 @@ class App
     {
         session_start(); // demarre la session et recupere la session 
     }
+
     public function run()
     {
-        //todo_____________________________________________________________________
-
+        //todo LOGIN LOGOUT____________________________________________________________________________
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
 
         if ($uri == '/' || $uri == '/index.php') {
@@ -35,8 +35,8 @@ class App
             $controller = new HomeController();
             $controller->logout();
         }
-        //todo PRODUCTS_____________________________________________________________________
 
+        //todo PRODUCTS____________________________________________________________________________
         elseif ($uri == '/products') {
             $controller = new ProductController();
             $controller->displayList();
@@ -49,24 +49,23 @@ class App
         } elseif ($uri == '/products/updateDatabase' && isset($_POST['id'])) {
             $controller = new ProductController();
             $controller->updateDatabaseProducts();
-            //! affiche les nouveaux produits 
+            // affiche les nouveaux produits 
         } elseif ($uri == '/products/insertProduct') {
             $controller = new ProductController();
             $controller->insertProduct();
-         // ! JSON____________________________________________________________________________
+            // ! JSON API_________________________________________________
         } elseif ($uri == '/api/products') {
             $controller = new ProductController();
             $controller->displayAllProducts();
         } elseif ($uri == '/api/products/consume' && isset($_GET['id'])) {
             $controller = new ProductController();
             $controller->consumeOne($_GET['id']);
-        } elseif ($uri == '/api/products/category'){
+        } elseif ($uri == '/api/products/category') {
             $controller = new ProductController();
             $controller->displayProductsByCategory();
         }
 
-        //todo EMPLOYEES_____________________________________________________________________
-
+        //todo EMPLOYEES____________________________________________________________________________
         elseif ($uri == '/employees') {
             $controller = new EmployeeController();
             $controller->displayAllEmployees();
@@ -80,21 +79,29 @@ class App
             $controller = new EmployeeController();
             $controller->displayOrdersByemployee();
         }
-        
-        
-        //todo ORDERS_____________________________________________________________________
+        // ! JSON API_________________________________________________
+        elseif ($uri == '/api/employee/one' && isset($_GET['id'])) {
+            $controller = new EmployeeController();
+            $controller->displayDetailsEmployee();
+        }
+        //!$_POST____________________________
+        elseif ($uri == '/api/orders/place') {
+            $controller = new OrderController();
+            $controller->placeOrder();
+        }
 
+        //todo ORDERS____________________________________________________________________________
         elseif ($uri == '/orders') {
             $controller = new OrderController();
             $controller->displayAllOrders();
-        // } elseif ($uri == '/orders/details') {
-        //     $controller = new OrderController();
-        //     $controller->displayOrdersByEmployee();
-        //     $controller->displayTotalAmount();
-        }
-        elseif ($uri == '/orders/details'){
+        } elseif ($uri == '/orders/details') {
             $controller = new OrderController();
             $controller->displayDetailsOrderByEmploye();
+        }
+        // ! JSON API_________________________________________________
+        elseif ($uri == '/api/order/history' && isset($_GET['id'])) {
+            $controller = new EmployeeController();
+            $controller->displayOrdersHistory();
         }
     }
 }
